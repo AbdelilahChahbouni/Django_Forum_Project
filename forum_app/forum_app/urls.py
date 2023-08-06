@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path("" , views.test , name="test")
     path("" , include('question_app.urls'))
 
 ]
