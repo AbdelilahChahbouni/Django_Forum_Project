@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
-    'question_app'
+    'question_app',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [

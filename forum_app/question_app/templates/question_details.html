@@ -43,37 +43,28 @@
 
 
   	<!-- End Nav bar -->
-    <h1 style="text-align: center; margin: 40px; font-size: 50px;">Forum Questions </h1>
+    <h1 style="text-align: center; margin: 40px; font-size: 50px;">	Question Details </h1>
 
     <!-- Start Table -->
-    	<div class="container">
-    	<table class="table table-striped table-bordered ">
-  		<thead class="table-dark">
-    		<tr>
-      			<th scope="col">Id</th>
-      			<th scope="col">Author</th>
-            <th scope="col">Question</th>
-      			<th scope="col">Tags</th>
-      			<th scope="col">Create_at</th>
-            <th scope="col">Details</th>
-    		</tr>
-  		</thead>
-  		<tbody>
-
-      {% for x,y in new_data %}
-    	<tr>
-      		<th scope="row">{{ x.id }}</th>
-      		<td>{{ request.user.username }}</td>
-          <td>{{ x.question }}</td>
-      		<td>{{ y }}</td>
-      		<td>{{ x.create_at }}</td>
-          <td><a href="{% url 'question_details' q_id=x.id %}">Deatils</a></td>
-    	</tr>
+    <div class="container">
+    	
+  		
+      {% for item in question %}
+    <div class="card">
+  		<h5 class="card-header">Autrhor : {{item.author}}</h5>
+  		<h5 class="card-header">Create_at : {{item.create_at}}</h5>
+  		<div class="card-body">
+   		 	<h5 class="card-title">{{item.question}}</h5>
+    		<p class="card-text">{{item.content}}</p>
+    		<a href="{% url 'home' %}" class="btn btn-primary">Back Home</a>
+    		<a href="{% url 'home' %}" class="btn btn-danger">Delete</a>
+    		<a href="{% url 'home' %}" class="btn btn-secondary">Update</a>
+  		</div>
+	</div>   	
       {% endfor %}
-  </tbody>
-</table>
-{{x}}
-</div>
+
+
+	</div>
 
     <!-- End Table -->
 
@@ -85,28 +76,4 @@
    
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
