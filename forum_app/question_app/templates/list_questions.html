@@ -53,19 +53,17 @@
       			<th scope="col">Id</th>
       			<th scope="col">Author</th>
             <th scope="col">Question</th>
-      			<th scope="col">Tags</th>
       			<th scope="col">Create_at</th>
             <th scope="col">Details</th>
     		</tr>
   		</thead>
   		<tbody>
-
-      {% for x,y in new_data %}
+      
+      {% for x in que %}
     	<tr>
       		<th scope="row">{{ x.id }}</th>
       		<td>{{ request.user.username }}</td>
           <td>{{ x.question }}</td>
-      		<td>{{ y }}</td>
       		<td>{{ x.create_at }}</td>
           <td><a href="{% url 'question_details' q_id=x.id %}">Deatils</a></td>
     	</tr>
