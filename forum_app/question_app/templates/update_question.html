@@ -35,7 +35,7 @@
           </ul>
         </li>
       </ul>
-        <a href="{% url 'add_question' %}" class="btn btn-outline-primary" type="submit">Add Question</a>
+        <a href="{% url 'home' %}" class="btn btn-outline-primary" type="submit">Add Question</a>
       
     </div>
   </div>
@@ -43,48 +43,22 @@
 
 
   	<!-- End Nav bar -->
-    <h1 style="text-align: center; margin: 40px; font-size: 50px;">	Question Details </h1>
+    <h1 style="text-align: center; margin: 40px; font-size: 50px;">Update Questions </h1>
 
     <!-- Start Table -->
-    <div class="container">
-    	
-  		
-      {% for item in question %}
-    <div class="card">
-  		<h5 class="card-header">Autrhor : {{item.author}}</h5>
-  		<h5 class="card-header">Create_at : {{item.create_at}}</h5>
-      <h5 class="card-header">Tags : {{tags}}</h5>
-  		<div class="card-body">
-   		 	<h5 class="card-title">{{item.question}}</h5>
-    		<p class="card-text">{{item.content}}</p>
-    		<a href="{% url 'home' %}" class="btn btn-primary">Back Home</a>
-    		<a href="{% url 'update_question' q_id=item.id %}" class="btn btn-secondary">Update</a>
+    	<div class="container">
+    	{% load bootstrap %}
+    		
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{form|bootstrap }}
+			<input class="btn-primary mt-5 p-2" type="submit" value="Update Question">
 
-        <a href="{% url 'question_delete' q_id=item.id %}" class="btn btn-danger">Delete</a>
-  		</div>
-      {% for content in answer_question%}
-      <div style="border:1px solid black; padding: 10px; background-color:#eee; margin:10px"> {{content.author}} : {{content.anwser}} <br> {{content.create_at}}</div>
-
-
-      {% endfor %}
-
-      {% load bootstrap %}
-        
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{form|bootstrap }}
-      <input class="btn-primary mt-5 p-2" type="submit" value="Add Answer">
-
-    </form>
-    
-	</div>   	
-      {% endfor %}
-
-
-	</div>
+		</form>
+		</div>
 
     <!-- End Table -->
-
+  
     
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -93,4 +67,3 @@
    
   </body>
 </html>
-
