@@ -16,12 +16,6 @@ class Questions(models.Model):
 	def __str__(self):
 		return self.question
 
-	def get_tags(self):
-		my_tag = []
-		for tag in self.tags.all():
-			my_tag.append(str(tag))
-		return ', '.join(my_tag)
-
 
 class Answers(models.Model):
 
@@ -31,7 +25,7 @@ class Answers(models.Model):
 	author = models.ForeignKey(User , on_delete=models.SET_NULL,null=True , blank=True , related_name="answer_user")
 
 	def __str__(self):
-		return self.author
+		return str(self.author)
 
 
 

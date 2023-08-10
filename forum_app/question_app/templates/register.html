@@ -53,7 +53,7 @@
 			{% csrf_token %}
 			{{form|bootstrap }}
 			<input class="btn-primary mt-5 p-2" type="submit" value="Register">
-      <p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+      <p class="text-center">If you already have an account, <a href="{% url 'login_user' %}">login</a> instead.</p>
 
 		</form>
 		</div>
