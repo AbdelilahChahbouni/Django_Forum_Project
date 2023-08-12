@@ -5,28 +5,28 @@ from .forms import QuestionForm , AnswerForm , NewUserForm
 from django.contrib.auth import login , authenticate , logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm 
-from taggit.models import Tag
+from taggit.models import Tag 
+from django.contrib.auth.models import User
 
 
 
 
 def list_questions(request):
-    d = Questions.objects.all().values()
-    #data2 = Questions.tags.values_list('name' , flat=True)
-    data2 = Questions.tags.all()
-    new_data = zip(d , data2)
-    my_loop=range(1, 8)
-
-    return render(request,"list_questions.html" , {'que' : d , 'new_data': new_data , 'test':my_loop})
+    d = Questions.objects.all()
+    new_list = []
+    for x in d :
+        d2 = Questions.objects.get(id=x.id)
+        s =  d2.tags.all()
+        for item in s :
+            new_list.append(item)
+    new_data = zip(d , new_list)
+    return render(request,"list_questions.html" , {'new_data': new_data})
 
     
 def add_question(request):
     if request.method == "POST":
         form = QuestionForm(request.POST , request.FILES)
         if form.is_valid():
-            #new_form = form.save(commit=False)
-            #new_form.author = request.user
-            #new_form.save()
             form.instance.author = request.user
             form.save()
             return redirect("home")
@@ -83,10 +83,10 @@ def register(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            messages.success(request, "Registration successful." )
-            return redirect("home")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
+            #login(request, user)
+            #messages.success(request, "Registration successful." )
+            return redirect("login_user")
+        #messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render (request=request, template_name="register.html", context={"form":form})
 

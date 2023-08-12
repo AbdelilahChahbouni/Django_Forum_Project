@@ -20,47 +20,45 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated%}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}" >Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
-        
+        {% endif %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Accounts
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Register</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'logout_user' %}">Logout</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'login_user' %}">Login</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+            {% endif %}
           </ul>
         </li>
-        {% endif %}
       </ul>
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'home' %}" class="btn btn-outline-primary" type="submit">Add Question</a>
+        {% if request.user.is_authenticated%}
+          <span style = "color: white ; margin-right: 40px;"> User : {{ request.user.username }} </span>
+
+          <a href="{% url 'add_question' %}" class="btn btn-outline-primary" type="submit">Add Question</a>
         {% endif %}
+      
     </div>
   </div>
 </nav>
 
 
-  	
-    <h1 style="text-align: center; margin: 40px; font-size: 50px;">Register </h1>
+  	{% block content %}
 
-    <!-- Start Table -->
-    	<div class="container">
-    	{% load bootstrap %}
-    		
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			{{form|bootstrap }}
-			<input class="btn-primary mt-5 p-2" type="submit" value="Register">
-      <p class="text-center">If you already have an account, <a href="{% url 'login_user' %}">login</a> instead.</p>
 
-		</form>
-		</div>
+
+    {% endblock content %}
+
+    
+    	
 
    
   

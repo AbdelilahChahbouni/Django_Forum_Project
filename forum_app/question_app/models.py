@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 
 class Questions(models.Model):
 
-	author = models.ForeignKey(User , on_delete=models.SET_NULL,null=True , blank=True , related_name="quetion_user")
+	author = models.ForeignKey(User , on_delete=models.SET_NULL,null=True , related_name="question")
 	content= models.TextField(max_length=200)
-	tags = TaggableManager(blank=True)
+	tags = TaggableManager()
 	question= models.CharField(max_length=100)
 	create_at = models.DateTimeField(default=timezone.now())
 

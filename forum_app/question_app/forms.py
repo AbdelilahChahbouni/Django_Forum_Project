@@ -11,6 +11,7 @@ class QuestionForm(forms.ModelForm):
 	class Meta:
 		model = Questions
 		exclude = ("author",)
+		fields = ('question' , 'content' , 'tags' , 'create_at' )
 
 
 
