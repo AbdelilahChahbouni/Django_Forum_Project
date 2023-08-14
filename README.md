@@ -2,7 +2,7 @@
 Project Name : 
 	-Forum for Questions And ANSWERS
 
-Description:
+Descriptions:
 	-in this project can the user add Questions And Answers
 
 Features:
